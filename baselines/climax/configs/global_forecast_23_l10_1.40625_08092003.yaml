@@ -1,0 +1,488 @@
+seed_everything: 42
+
+# ---------------------------- TRAINER -------------------------------------------
+trainer:
+  default_root_dir: ${oc.env:OUTPUT_DIR,global_forecast_ocean}
+  precision: 16
+
+  #gpus: null
+  num_nodes: 1
+  accelerator: gpu
+  strategy: ddp
+
+  min_epochs: 0
+  max_epochs: 300
+  enable_progress_bar: true
+
+  sync_batchnorm: True
+  enable_checkpointing: True
+  #resume_from_checkpoint: null
+
+  # debugging
+  fast_dev_run: false
+
+  logger:
+    class_path: pytorch_lightning.loggers.tensorboard.TensorBoardLogger
+    init_args:
+      save_dir: ${trainer.default_root_dir}/benchmark_climax_log
+      name: L${data.predict_range}p${model.net.init_args.patch_size}e${model.net.init_args.embed_dim}depth${model.net.init_args.depth}decoder${model.net.init_args.decoder_depth}
+      version: null
+      log_graph: False
+      default_hp_metric: True
+      prefix: ""
+
+  callbacks:
+
+    - class_path: pytorch_lightning.callbacks.LearningRateMonitor
+      init_args:
+        logging_interval: "step"
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        dirpath: ${trainer.default_root_dir}/bench_climax_checkpoints/${trainer.logger.init_args.name}
+        monitor: "val/w_mse" # name of the logged metric which determines when model is improving
+        mode: "min" # "max" means higher metric value is better, can be also "min"
+        save_top_k: 1 # save k best models (determined by above metric)
+        save_last: True
+        verbose: False
+        filename: "best_{epoch:03d}_test_loss{test/w_rmse:.4f}"
+        auto_insert_metric_name: False
+    - class_path: pytorch_lightning.callbacks.EarlyStopping
+      init_args:
+        monitor: "val/w_mse" # name of the logged metric which determines when model is improving
+        mode: "min" # "max" means higher metric value is better, can be also "min"
+        patience: 5 # how many validation epochs of not improving until training stops
+        min_delta: 0. # minimum change in the monitored metric needed to qualify as an improvement
+
+    - class_path: pytorch_lightning.callbacks.RichModelSummary
+      init_args:
+        max_depth: -1
+
+    - class_path: pytorch_lightning.callbacks.RichProgressBar
+
+# ---------------------------- MODEL -------------------------------------------
+model:
+  lr: 5e-4
+  beta_1: 0.9
+  beta_2: 0.95
+  weight_decay: 1e-5
+  warmup_epochs: 5
+  max_epochs: 300
+  warmup_start_lr: 1e-8
+  eta_min: 1e-8
+  pretrained_path: ""
+
+  net:
+    class_path: climax.arch.ClimaX
+    init_args:
+      default_vars: [
+      'u',
+      'v',
+      'zos',
+      'sst',
+      'thetao_0',
+      'so_0',
+      'uo_0',
+      'vo_0',
+      'thetao_2',
+      'so_2',
+      'uo_2',
+      'vo_2',
+      'thetao_4',
+      'so_4',
+      'uo_4',
+      'vo_4',
+      'thetao_6',
+      'so_6',
+      'uo_6',
+      'vo_6',
+      'thetao_8',
+      'so_8',
+      'uo_8',
+      'vo_8',
+      'thetao_10',
+      'so_10',
+      'uo_10',
+      'vo_10',
+      'thetao_12',
+      'so_12',
+      'uo_12',
+      'vo_12',
+      'thetao_14',
+      'so_14',
+      'uo_14',
+      'vo_14',
+      'thetao_16',
+      'so_16',
+      'uo_16',
+      'vo_16',
+      'thetao_18',
+      'so_18',
+      'uo_18',
+      'vo_18',
+      'thetao_20',
+      'so_20',
+      'uo_20',
+      'vo_20',
+      'thetao_21',
+      'so_21',
+      'uo_21',
+      'vo_21',
+      'thetao_22',
+      'so_22',
+      'uo_22',
+      'vo_22',
+      'thetao_23',
+      'so_23',
+      'uo_23',
+      'vo_23',
+      'thetao_24',
+      'so_24',
+      'uo_24',
+      'vo_24',
+      'thetao_25',
+      'so_25',
+      'uo_25',
+      'vo_25',
+      'thetao_26',
+      'so_26',
+      'uo_26',
+      'vo_26',
+      'thetao_27',
+      'so_27',
+      'uo_27',
+      'vo_27',
+      'thetao_28',
+      'so_28',
+      'uo_28',
+      'vo_28',
+      'thetao_29',
+      'so_29',
+      'uo_29',
+      'vo_29',
+      'thetao_30',
+      'so_30',
+      'uo_30',
+      'vo_30',
+      'thetao_31',
+      'so_31',
+      'uo_31',
+      'vo_31',
+      'thetao_32',
+      'so_32',
+      'uo_32',
+      'vo_32'
+      ]
+      img_size: [121, 256]
+      patch_size: 2
+      embed_dim: 576
+      depth: 4
+      decoder_depth: 4
+      num_heads: 8
+      mlp_ratio: 4
+      drop_path: 0.2
+      drop_rate: 0.2
+      use_checkpoint: False
+      #attn_drop: 0.2
+
+# ---------------------------- DATA -------------------------------------------
+data:
+
+
+  predict_range: 10 #天数
+  batch_size: 8
+  num_workers: 1
+  pin_memory: False
+  root_dir: /datadrive/datasets/5.625deg_equally_np/
+  variables: [ #原始数据的变量（按顺序）
+    'zos',
+    'u',
+    'v',
+    'sst',
+    'thetao_0',
+    'so_0',
+    'uo_0',
+    'vo_0',
+    'thetao_2',
+    'so_2',
+    'uo_2',
+    'vo_2',
+    'thetao_4',
+    'so_4',
+    'uo_4',
+    'vo_4',
+    'thetao_6',
+    'so_6',
+    'uo_6',
+    'vo_6',
+    'thetao_8',
+    'so_8',
+    'uo_8',
+    'vo_8',
+    'thetao_10',
+    'so_10',
+    'uo_10',
+    'vo_10',
+    'thetao_12',
+    'so_12',
+    'uo_12',
+    'vo_12',
+    'thetao_14',
+    'so_14',
+    'uo_14',
+    'vo_14',
+    'thetao_16',
+    'so_16',
+    'uo_16',
+    'vo_16',
+    'thetao_18',
+    'so_18',
+    'uo_18',
+    'vo_18',
+    'thetao_20',
+    'so_20',
+    'uo_20',
+    'vo_20',
+    'thetao_21',
+    'so_21',
+    'uo_21',
+    'vo_21',
+    'thetao_22',
+    'so_22',
+    'uo_22',
+    'vo_22',
+    'thetao_23',
+    'so_23',
+    'uo_23',
+    'vo_23',
+    'thetao_24',
+    'so_24',
+    'uo_24',
+    'vo_24',
+    'thetao_25',
+    'so_25',
+    'uo_25',
+    'vo_25',
+    'thetao_26',
+    'so_26',
+    'uo_26',
+    'vo_26',
+    'thetao_27',
+    'so_27',
+    'uo_27',
+    'vo_27',
+    'thetao_28',
+    'so_28',
+    'uo_28',
+    'vo_28',
+    'thetao_29',
+    'so_29',
+    'uo_29',
+    'vo_29',
+    'thetao_30',
+    'so_30',
+    'uo_30',
+    'vo_30',
+    'thetao_31',
+    'so_31',
+    'uo_31',
+    'vo_31',
+    'thetao_32',
+    'so_32',
+    'uo_32',
+    'vo_32'
+  ]
+  in_variables: [ #模型输入的变量（按顺序）
+    'u',
+    'v',
+    'zos',
+    'sst',
+    'thetao_0',
+    'so_0',
+    'uo_0',
+    'vo_0',
+    'thetao_2',
+    'so_2',
+    'uo_2',
+    'vo_2',
+    'thetao_4',
+    'so_4',
+    'uo_4',
+    'vo_4',
+    'thetao_6',
+    'so_6',
+    'uo_6',
+    'vo_6',
+    'thetao_8',
+    'so_8',
+    'uo_8',
+    'vo_8',
+    'thetao_10',
+    'so_10',
+    'uo_10',
+    'vo_10',
+    'thetao_12',
+    'so_12',
+    'uo_12',
+    'vo_12',
+    'thetao_14',
+    'so_14',
+    'uo_14',
+    'vo_14',
+    'thetao_16',
+    'so_16',
+    'uo_16',
+    'vo_16',
+    'thetao_18',
+    'so_18',
+    'uo_18',
+    'vo_18',
+    'thetao_20',
+    'so_20',
+    'uo_20',
+    'vo_20',
+    'thetao_21',
+    'so_21',
+    'uo_21',
+    'vo_21',
+    'thetao_22',
+    'so_22',
+    'uo_22',
+    'vo_22',
+    'thetao_23',
+    'so_23',
+    'uo_23',
+    'vo_23',
+    'thetao_24',
+    'so_24',
+    'uo_24',
+    'vo_24',
+    'thetao_25',
+    'so_25',
+    'uo_25',
+    'vo_25',
+    'thetao_26',
+    'so_26',
+    'uo_26',
+    'vo_26',
+    'thetao_27',
+    'so_27',
+    'uo_27',
+    'vo_27',
+    'thetao_28',
+    'so_28',
+    'uo_28',
+    'vo_28',
+    'thetao_29',
+    'so_29',
+    'uo_29',
+    'vo_29',
+    'thetao_30',
+    'so_30',
+    'uo_30',
+    'vo_30',
+    'thetao_31',
+    'so_31',
+    'uo_31',
+    'vo_31',
+    'thetao_32',
+    'so_32',
+    'uo_32',
+    'vo_32'
+  ]
+  out_variables: [ #模型输出的顺序（按顺序）
+    'zos',
+    'sst',
+    'thetao_0',
+    'so_0',
+    'uo_0',
+    'vo_0',
+    'thetao_2',
+    'so_2',
+    'uo_2',
+    'vo_2',
+    'thetao_4',
+    'so_4',
+    'uo_4',
+    'vo_4',
+    'thetao_6',
+    'so_6',
+    'uo_6',
+    'vo_6',
+    'thetao_8',
+    'so_8',
+    'uo_8',
+    'vo_8',
+    'thetao_10',
+    'so_10',
+    'uo_10',
+    'vo_10',
+    'thetao_12',
+    'so_12',
+    'uo_12',
+    'vo_12',
+    'thetao_14',
+    'so_14',
+    'uo_14',
+    'vo_14',
+    'thetao_16',
+    'so_16',
+    'uo_16',
+    'vo_16',
+    'thetao_18',
+    'so_18',
+    'uo_18',
+    'vo_18',
+    'thetao_20',
+    'so_20',
+    'uo_20',
+    'vo_20',
+    'thetao_21',
+    'so_21',
+    'uo_21',
+    'vo_21',
+    'thetao_22',
+    'so_22',
+    'uo_22',
+    'vo_22',
+    'thetao_23',
+    'so_23',
+    'uo_23',
+    'vo_23',
+    'thetao_24',
+    'so_24',
+    'uo_24',
+    'vo_24',
+    'thetao_25',
+    'so_25',
+    'uo_25',
+    'vo_25',
+    'thetao_26',
+    'so_26',
+    'uo_26',
+    'vo_26',
+    'thetao_27',
+    'so_27',
+    'uo_27',
+    'vo_27',
+    'thetao_28',
+    'so_28',
+    'uo_28',
+    'vo_28',
+    'thetao_29',
+    'so_29',
+    'uo_29',
+    'vo_29',
+    'thetao_30',
+    'so_30',
+    'uo_30',
+    'vo_30',
+    'thetao_31',
+    'so_31',
+    'uo_31',
+    'vo_31',
+    'thetao_32',
+    'so_32',
+    'uo_32',
+    'vo_32'
+  ]
+

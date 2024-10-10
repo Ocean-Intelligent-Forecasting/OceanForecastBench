@@ -1,0 +1,209 @@
+name: climaX
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1
+  - _openmp_mutex=4.5
+
+  - appdirs=1.4.4
+  - asciitree=0.3.3
+  - blas=1.0
+  - bokeh=2.4.3
+  - bottleneck=1.3.6
+  - brotlipy=0.7.0
+  - bzip2=1.0.8
+  - c-ares=1.18.1
+  - ca-certificates=2022.12.7
+  - certifi=2022.12.7
+  - cf_xarray=0.7.9
+  - cffi=1.15.1
+  - cftime=1.6.2
+  - charset-normalizer=2.0.4
+  - click=8.1.3
+  - cloudpickle=2.2.1
+  - cryptography=38.0.4
+  - cudatoolkit=11.3.1
+  - curl=7.87.0
+  - cytoolz=0.12.0
+  - dask=2023.1.1
+  - dask-core=2023.1.1
+  - distributed=2023.1.1
+  - entrypoints=0.4
+  - esmf=8.4.0
+  - esmpy=8.4.0
+  - fasteners=0.17.3
+  - ffmpeg=4.3
+  - fftw=3.3.10
+  - flit-core=3.6.0
+  - freetype=2.12.1
+  - fsspec=2023.1.0
+  - geos=3.11.1
+  - giflib=5.2.1
+  - gmp=6.2.1
+  
+  - hdf4=4.2.15
+  - hdf5=1.12.2
+  - heapdict=1.0.1
+  - idna=3.4
+  - importlib-metadata=6.0.0
+  - intel-openmp=2021.4.0
+  - jinja2=3.1.2
+  - jpeg=9e
+  
+  - krb5=1.20.1
+  - lame=3.100
+  - lcms2=2.12
+  
+  - lerc=3.0
+  - libaec=1.0.6
+  - libcurl=7.87.0
+  - libdeflate=1.8
+  
+  
+  - libffi=3.4.2
+  
+  
+  
+  - libiconv=1.16
+  
+  - libllvm11=11.1.0
+  - libnetcdf=4.8.1
+  
+  - libpng=1.6.37
+  - libssh2=1.10.0
+  
+  
+  - libtiff=4.5.0
+  
+  - libwebp=1.2.4
+  - libwebp-base=1.2.4
+  - libzip=1.9.2
+  - libzlib=1.2.13
+  - llvm-openmp=15.0.7
+  - llvmlite=0.39.1
+  - locket=1.0.0
+  - lz4=4.2.0
+  - lz4-c=1.9.4
+  - markupsafe=2.1.2
+  - mkl=2021.4.0
+  - mkl-service=2.4.0
+  - mkl_fft=1.3.1
+  - mkl_random=1.2.2
+  - msgpack-python=1.0.4
+  
+  - netcdf-fortran=4.6.0
+  - netcdf4=1.6.2
+  
+  - numba=0.56.4
+  - numcodecs=0.11.0
+  - numpy=1.23.5
+  - numpy-base=1.23.5
+  
+  - openssl=1.1.1s
+  - packaging=23.0
+  - pandas=1.5.3
+  - partd=1.3.0
+  - pillow=9.3.0
+  - pip=22.3.1
+  - pooch=1.6.0
+  - portalocker=2.3.0
+  - psutil=5.9.4
+  - pycparser=2.21
+  - pyopenssl=22.0.0
+  - pysocks=1.7.1
+  - python=3.8.16
+  - python-dateutil=2.8.2
+  - python_abi=3.8
+  - pytorch=1.12.1
+  - pytorch-mutex=1.0
+  - pytz=2022.7.1
+  - pyyaml=6.0
+  
+  - requests=2.28.1
+  - scipy=1.10.0
+  - setuptools=65.6.3
+  - shapely=1.8.5
+  - six=1.16.0
+  - sortedcontainers=2.4.0
+  - sparse=0.13.0
+  - sqlite=3.40.1
+  - tblib=1.7.0
+  - tk=8.6.12
+  - toolz=0.12.0
+  - torchaudio=0.12.1
+  - torchdata=0.4.1
+  - torchvision=0.13.1
+  - tornado=6.2
+  - typing_extensions=4.4.0
+  - urllib3=1.26.14
+  - wheel=0.37.1
+  - xarray=2023.1.0
+  - xesmf=0.7.0
+  - xz=5.2.10
+  - yaml=0.2.5
+  - zarr=2.13.6
+  - zict=2.2.0
+  - zipp=3.12.1
+  - zlib=1.2.13
+  - zstd=1.5.2
+  - pip:
+      - absl-py==1.4.0
+      - aiohttp==3.8.3
+      - aiosignal==1.3.1
+      - antlr4-python3-runtime==4.9.3
+      - async-timeout==4.0.2
+      - attrs==22.2.0
+      - cachetools==5.3.0
+      - docstring-parser==0.15
+      - einops==0.6.0
+      - filelock==3.9.0
+      - fire==0.5.0
+      - frozenlist==1.3.3
+      - google-auth==2.16.0
+      - google-auth-oauthlib==0.4.6
+      - grpcio==1.52.0
+      - huggingface-hub==0.12.0
+      - importlib-resources==5.10.2
+      - jsonargparse==4.19.0
+      - lightning-lite==1.8.0
+      - lightning-utilities==0.3.0
+      - markdown==3.4.1
+      - multidict==6.0.4
+      - oauthlib==3.2.2
+      - omegaconf==2.3.0
+      - protobuf==3.20.3
+      - pyasn1==0.4.8
+      - pyasn1-modules==0.2.8
+      - pytorch-lightning==1.8.0
+      - requests-oauthlib==1.3.1
+      - rsa==4.9
+      - tensorboard==2.11.2
+      - tensorboard-data-server==0.6.1
+      - tensorboard-plugin-wit==1.8.1
+      - termcolor==2.2.0
+      - timm==0.6.12
+      - torchmetrics==0.11.1
+      - tqdm==4.64.1
+      - typeshed-client==2.2.0
+      - werkzeug==2.2.2
+      - yarl==1.8.2
+
+      - gnutls==3.6.15
+      - libev==4.33
+      - libgcc-ng==12.2.0
+      - libidn2==2.3.2
+      - libtasn1==4.16.0
+      - ncurses==6.4
+      - readline==8.2
+      - keyutils==1.6.1
+      - ld_impl_linux-64==2.38
+      - libedit==3.1.20191231
+      - libgfortran-ng==12.2.0
+      - libgfortran5==12.2.0
+      - libnghttp2==1.51.0
+      - libstdcxx-ng==12.2.0
+      - libunistring==0.9.10
+      - nettle==3.7.3
+      - openh264==2.1.1

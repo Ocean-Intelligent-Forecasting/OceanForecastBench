@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="562efab0-fc3a-43f6-bb47-e7438b8280d6" name="climaxswin">
+        <fileTransfer rootFolder="/hpcfs/fhome/yangjh5/Swin_Trans" accessType="SFTP" host="login.tibhpc.net" port="22" sshConfigId="80decd34-d213-4da7-8964-cbf5c9cc27b2" sshConfig="yangjh5@login.tibhpc.net:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
