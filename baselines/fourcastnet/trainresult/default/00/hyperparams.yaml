@@ -1,0 +1,131 @@
+full_field: "{'loss': 'l2', 'lr': 0.001, 'scheduler': 'ReduceLROnPlateau', 'num_data_workers':
+  4, 'dt': 1, 'n_history': 0, 'prediction_type': 'iterative', 'prediction_length':
+  41, 'n_initial_conditions': 5, 'ics_type': 'default', 'save_raw_forecasts': True,
+  'save_channel': False, 'masked_acc': False, 'maskpath': 'None', 'perturb': False,
+  'add_grid': False, 'N_grid_channels': 0, 'gridtype': 'sinusoidal', 'roll': False,
+  'max_epochs': 50, 'batch_size': 64, 'num_blocks': 8, 'nettype': 'afno', 'patch_size':
+  8, 'width': 56, 'modes': 32, 'target': 'default', 'in_channels': [0, 1], 'out_channels':
+  [0, 1], 'normalization': 'zscore', 'train_data_path': 'D:\\\\WuWei_D_20220627\\\\\
+  guofangkeda\\\\numerical\\\\FourCastNet-master\\\\data\\\\FCN_ERA5_data_v0\\\\train',
+  'valid_data_path': 'D:\\\\WuWei_D_20220627\\\\guofangkeda\\\\numerical\\\\FourCastNet-master\\\
+  \\data\\\\FCN_ERA5_data_v0\\\\val', 'inf_data_path': '/pscratch/sd/j/jpathak/wind/out_of_sample',
+  'exp_dir': '/pscratch/sd/j/jpathak/ERA5_expts_gtc/wind', 'time_means_path': '/pscratch/sd/j/jpathak/wind/time_means.npy',
+  'global_means_path': '/pscratch/sd/j/jpathak/wind/global_means.npy', 'global_stds_path':
+  '/pscratch/sd/j/jpathak/wind/global_stds.npy', 'orography': False, 'orography_path':
+  'None', 'log_to_screen': True, 'log_to_wandb': True, 'save_checkpoint': True, 'enable_nhwc':
+  False, 'optimizer_type': 'FusedAdam', 'crop_size_x': 'None', 'crop_size_y': 'None',
+  'two_step_training': False, 'plot_animations': False, 'add_noise': False, 'noise_std':
+  0}"
+afno_backbone: "{'log_to_wandb': True, 'lr': 0.0005, 'batch_size': 64, 'max_epochs':
+  150, 'scheduler': 'CosineAnnealingLR', 'in_channels': [0, 1, 2, 3, 4, 5, 6, 7, 8,
+  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'out_channels': [0, 1, 2, 3, 4, 5, 6,
+  7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'orography': False, 'orography_path':
+  'None', 'exp_dir': '/pscratch/sd/s/shas1693/results/era5_wind', 'train_data_path':
+  '/pscratch/sd/s/shas1693/data/era5/train', 'valid_data_path': '/pscratch/sd/s/shas1693/data/era5/test',
+  'inf_data_path': '/pscratch/sd/s/shas1693/data/era5/out_of_sample', 'time_means_path':
+  '/pscratch/sd/s/shas1693/data/era5/time_means.npy', 'global_means_path': '/pscratch/sd/s/shas1693/data/era5/global_means.npy',
+  'global_stds_path': '/pscratch/sd/s/shas1693/data/era5/global_stds.npy', 'loss':
+  'l2', 'num_data_workers': 4, 'dt': 1, 'n_history': 0, 'prediction_type': 'iterative',
+  'prediction_length': 41, 'n_initial_conditions': 5, 'ics_type': 'default', 'save_raw_forecasts':
+  True, 'save_channel': False, 'masked_acc': False, 'maskpath': 'None', 'perturb':
+  False, 'add_grid': False, 'N_grid_channels': 0, 'gridtype': 'sinusoidal', 'roll':
+  False, 'num_blocks': 8, 'nettype': 'afno', 'patch_size': 8, 'width': 56, 'modes':
+  32, 'target': 'default', 'normalization': 'zscore', 'log_to_screen': True, 'save_checkpoint':
+  True, 'enable_nhwc': False, 'optimizer_type': 'FusedAdam', 'crop_size_x': 'None',
+  'crop_size_y': 'None', 'two_step_training': False, 'plot_animations': False, 'add_noise':
+  False, 'noise_std': 0}"
+afno_backbone_orography: "{'orography': True, 'orography_path': '/pscratch/sd/s/shas1693/data/era5/static/orography.h5',
+  'log_to_wandb': True, 'lr': 0.0005, 'batch_size': 64, 'max_epochs': 150, 'scheduler':
+  'CosineAnnealingLR', 'in_channels': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+  14, 15, 16, 17, 18, 19], 'out_channels': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+  12, 13, 14, 15, 16, 17, 18, 19], 'exp_dir': '/pscratch/sd/s/shas1693/results/era5_wind',
+  'train_data_path': '/pscratch/sd/s/shas1693/data/era5/train', 'valid_data_path':
+  '/pscratch/sd/s/shas1693/data/era5/test', 'inf_data_path': '/pscratch/sd/s/shas1693/data/era5/out_of_sample',
+  'time_means_path': '/pscratch/sd/s/shas1693/data/era5/time_means.npy', 'global_means_path':
+  '/pscratch/sd/s/shas1693/data/era5/global_means.npy', 'global_stds_path': '/pscratch/sd/s/shas1693/data/era5/global_stds.npy',
+  'loss': 'l2', 'num_data_workers': 4, 'dt': 1, 'n_history': 0, 'prediction_type':
+  'iterative', 'prediction_length': 41, 'n_initial_conditions': 5, 'ics_type': 'default',
+  'save_raw_forecasts': True, 'save_channel': False, 'masked_acc': False, 'maskpath':
+  'None', 'perturb': False, 'add_grid': False, 'N_grid_channels': 0, 'gridtype': 'sinusoidal',
+  'roll': False, 'num_blocks': 8, 'nettype': 'afno', 'patch_size': 8, 'width': 56,
+  'modes': 32, 'target': 'default', 'normalization': 'zscore', 'log_to_screen': True,
+  'save_checkpoint': True, 'enable_nhwc': False, 'optimizer_type': 'FusedAdam', 'crop_size_x':
+  'None', 'crop_size_y': 'None', 'two_step_training': False, 'plot_animations': False,
+  'add_noise': False, 'noise_std': 0}"
+afno_backbone_finetune: "{'lr': 0.0001, 'batch_size': 64, 'log_to_wandb': True, 'max_epochs':
+  50, 'pretrained': True, 'two_step_training': True, 'pretrained_ckpt_path': '/pscratch/sd/s/shas1693/results/era5_wind/afno_backbone/0/training_checkpoints/best_ckpt.tar',
+  'scheduler': 'CosineAnnealingLR', 'in_channels': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+  10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'out_channels': [0, 1, 2, 3, 4, 5, 6, 7,
+  8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'orography': False, 'orography_path':
+  'None', 'exp_dir': '/pscratch/sd/s/shas1693/results/era5_wind', 'train_data_path':
+  '/pscratch/sd/s/shas1693/data/era5/train', 'valid_data_path': '/pscratch/sd/s/shas1693/data/era5/test',
+  'inf_data_path': '/pscratch/sd/s/shas1693/data/era5/out_of_sample', 'time_means_path':
+  '/pscratch/sd/s/shas1693/data/era5/time_means.npy', 'global_means_path': '/pscratch/sd/s/shas1693/data/era5/global_means.npy',
+  'global_stds_path': '/pscratch/sd/s/shas1693/data/era5/global_stds.npy', 'loss':
+  'l2', 'num_data_workers': 4, 'dt': 1, 'n_history': 0, 'prediction_type': 'iterative',
+  'prediction_length': 41, 'n_initial_conditions': 5, 'ics_type': 'default', 'save_raw_forecasts':
+  True, 'save_channel': False, 'masked_acc': False, 'maskpath': 'None', 'perturb':
+  False, 'add_grid': False, 'N_grid_channels': 0, 'gridtype': 'sinusoidal', 'roll':
+  False, 'num_blocks': 8, 'nettype': 'afno', 'patch_size': 8, 'width': 56, 'modes':
+  32, 'target': 'default', 'normalization': 'zscore', 'log_to_screen': True, 'save_checkpoint':
+  True, 'enable_nhwc': False, 'optimizer_type': 'FusedAdam', 'crop_size_x': 'None',
+  'crop_size_y': 'None', 'plot_animations': False, 'add_noise': False, 'noise_std':
+  0}"
+perturbations: "{'lr': 0.0001, 'batch_size': 64, 'max_epochs': 50, 'pretrained': True,
+  'two_step_training': True, 'pretrained_ckpt_path': '/pscratch/sd/j/jpathak/ERA5_expts_gtc/wind/afno_20ch_bs_64_lr5em4_blk_8_patch_8_cosine_sched/1/training_checkpoints/best_ckpt.tar',
+  'prediction_length': 24, 'ics_type': 'datetime', 'n_perturbations': 100, 'save_channel':
+  TaggedScalar(value='True', style=None, tag=Tag('!bool')), 'save_idx': 4, 'save_raw_forecasts':
+  False, 'date_strings': ['2018-01-01 00:00:00'], 'inference_file_tag': ' ', 'valid_data_path':
+  '/pscratch/sd/j/jpathak/ ', 'perturb': True, 'n_level': 0.3, 'log_to_wandb': True,
+  'scheduler': 'CosineAnnealingLR', 'in_channels': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+  10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'out_channels': [0, 1, 2, 3, 4, 5, 6, 7,
+  8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'orography': False, 'orography_path':
+  'None', 'exp_dir': '/pscratch/sd/s/shas1693/results/era5_wind', 'train_data_path':
+  '/pscratch/sd/s/shas1693/data/era5/train', 'inf_data_path': '/pscratch/sd/s/shas1693/data/era5/out_of_sample',
+  'time_means_path': '/pscratch/sd/s/shas1693/data/era5/time_means.npy', 'global_means_path':
+  '/pscratch/sd/s/shas1693/data/era5/global_means.npy', 'global_stds_path': '/pscratch/sd/s/shas1693/data/era5/global_stds.npy',
+  'loss': 'l2', 'num_data_workers': 4, 'dt': 1, 'n_history': 0, 'prediction_type':
+  'iterative', 'n_initial_conditions': 5, 'masked_acc': False, 'maskpath': 'None',
+  'add_grid': False, 'N_grid_channels': 0, 'gridtype': 'sinusoidal', 'roll': False,
+  'num_blocks': 8, 'nettype': 'afno', 'patch_size': 8, 'width': 56, 'modes': 32, 'target':
+  'default', 'normalization': 'zscore', 'log_to_screen': True, 'save_checkpoint':
+  True, 'enable_nhwc': False, 'optimizer_type': 'FusedAdam', 'crop_size_x': 'None',
+  'crop_size_y': 'None', 'plot_animations': False, 'add_noise': False, 'noise_std':
+  0}"
+precip: "{'in_channels': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+  17, 18, 19], 'out_channels': [0], 'nettype': 'afno', 'nettype_wind': 'afno', 'log_to_wandb':
+  True, 'lr': 0.00025, 'batch_size': 64, 'max_epochs': 25, 'precip': '/pscratch/sd/p/pharring/ERA5/precip/total_precipitation',
+  'time_means_path_tp': '/pscratch/sd/p/pharring/ERA5/precip/total_precipitation/time_means.npy',
+  'model_wind_path': '/pscratch/sd/s/shas1693/results/era5_wind/afno_backbone_finetune/0/training_checkpoints/best_ckpt.tar',
+  'precip_eps': 1e-05, 'scheduler': 'CosineAnnealingLR', 'orography': False, 'orography_path':
+  'None', 'exp_dir': '/pscratch/sd/s/shas1693/results/era5_wind', 'train_data_path':
+  '/pscratch/sd/s/shas1693/data/era5/train', 'valid_data_path': '/pscratch/sd/s/shas1693/data/era5/test',
+  'inf_data_path': '/pscratch/sd/s/shas1693/data/era5/out_of_sample', 'time_means_path':
+  '/pscratch/sd/s/shas1693/data/era5/time_means.npy', 'global_means_path': '/pscratch/sd/s/shas1693/data/era5/global_means.npy',
+  'global_stds_path': '/pscratch/sd/s/shas1693/data/era5/global_stds.npy', 'loss':
+  'l2', 'num_data_workers': 4, 'dt': 1, 'n_history': 0, 'prediction_type': 'iterative',
+  'prediction_length': 41, 'n_initial_conditions': 5, 'ics_type': 'default', 'save_raw_forecasts':
+  True, 'save_channel': False, 'masked_acc': False, 'maskpath': 'None', 'perturb':
+  False, 'add_grid': False, 'N_grid_channels': 0, 'gridtype': 'sinusoidal', 'roll':
+  False, 'num_blocks': 8, 'patch_size': 8, 'width': 56, 'modes': 32, 'target': 'default',
+  'normalization': 'zscore', 'log_to_screen': True, 'save_checkpoint': True, 'enable_nhwc':
+  False, 'optimizer_type': 'FusedAdam', 'crop_size_x': 'None', 'crop_size_y': 'None',
+  'two_step_training': False, 'plot_animations': False, 'add_noise': False, 'noise_std':
+  0}"
+epsilon_factor: '0'
+world_size: '1'
+exp_dir: ./trainresult
+experiment_dir: 
+  D:\WuWei_D_20220627\guofangkeda\numerical\FourCastNet-master\trainresult\default\00
+checkpoint_path: ./trainresult\default\00\training_checkpoints/ckpt.tar
+best_checkpoint_path: ./trainresult\default\00\training_checkpoints/best_ckpt.tar
+resuming: 'False'
+local_rank: '0'
+enable_amp: 'False'
+name: default_00
+group: era5_precipdefault
+project: ERA5_precip
+entity: flowgan
+in_channels: '[0 1]'
+out_channels: '[0 1]'
+N_out_channels: '2'
